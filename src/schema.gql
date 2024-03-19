@@ -1,0 +1,378 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Menu {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  restaurantId: Float!
+  categories: [Category!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Category {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  restaurantId: Float!
+  menuId: Float!
+}
+
+type Restaurant {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: String!
+  menu: Menu!
+  categories: [Category!]!
+}
+
+type Product {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  type: String!
+  price: Float!
+  restaurantId: Float!
+  menuId: Float!
+  categoryId: Float!
+}
+
+type Query {
+  restaurants(distinct: [RestaurantScalarFieldEnum!], where: RestaurantWhereInput, orderBy: [RestaurantOrderByWithRelationInput!], cursor: RestaurantWhereUniqueInput, take: Float, skip: Float): [Restaurant!]!
+  restaurant(where: RestaurantWhereUniqueInput!): Restaurant!
+  menus(distinct: [MenuScalarFieldEnum!], where: MenuWhereInput, orderBy: [MenuOrderByWithRelationInput!], cursor: MenuWhereUniqueInput, take: Float, skip: Float): [Menu!]!
+  menu(where: MenuWhereUniqueInput!): Menu!
+  categories(distinct: [CategoryScalarFieldEnum!], where: CategoryWhereInput, orderBy: [CategoryOrderByWithRelationInput!], cursor: CategoryWhereUniqueInput, take: Float, skip: Float): [Category!]!
+  category(where: CategoryWhereUniqueInput!): Category!
+  products(distinct: [ProductScalarFieldEnum!], where: ProductWhereInput, orderBy: [ProductOrderByWithRelationInput!], cursor: ProductWhereUniqueInput, take: Float, skip: Float): [Product!]!
+  product(where: ProductWhereUniqueInput!): Product!
+}
+
+enum RestaurantScalarFieldEnum {
+  id
+  createdAt
+  updatedAt
+  name
+  description
+}
+
+input RestaurantWhereInput {
+  id: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  name: StringFilter
+  description: StringFilter
+  categories: CategoryListRelationFilter
+  menu: MenuRelationFilter
+  products: ProductListRelationFilter
+  AND: [RestaurantWhereInput!]
+  OR: [RestaurantWhereInput!]
+  NOT: [RestaurantWhereInput!]
+}
+
+input IntFilter {
+  equals: Float
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+}
+
+input DateTimeFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+}
+
+input StringFilter {
+  mode: QueryMode
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: String
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input CategoryListRelationFilter {
+  every: CategoryWhereInput
+  some: CategoryWhereInput
+  none: CategoryWhereInput
+}
+
+input CategoryWhereInput {
+  id: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  name: StringFilter
+  restaurantId: IntFilter
+  menuId: IntFilter
+  menu: MenuRelationFilter
+  restaurant: RestaurantRelationFilter
+  products: ProductListRelationFilter
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input MenuRelationFilter {
+  is: MenuWhereInput
+  isNot: MenuWhereInput
+}
+
+input MenuWhereInput {
+  id: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  name: StringFilter
+  restaurantId: IntFilter
+  categories: CategoryListRelationFilter
+  restaurant: RestaurantRelationFilter
+  products: ProductListRelationFilter
+  AND: [MenuWhereInput!]
+  OR: [MenuWhereInput!]
+  NOT: [MenuWhereInput!]
+}
+
+input RestaurantRelationFilter {
+  is: RestaurantWhereInput
+  isNot: RestaurantWhereInput
+}
+
+input ProductListRelationFilter {
+  every: ProductWhereInput
+  some: ProductWhereInput
+  none: ProductWhereInput
+}
+
+input ProductWhereInput {
+  id: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  name: StringFilter
+  type: StringFilter
+  price: FloatFilter
+  restaurantId: IntFilter
+  menuId: IntFilter
+  categoryId: IntFilter
+  category: CategoryRelationFilter
+  menu: MenuRelationFilter
+  restaurant: RestaurantRelationFilter
+  AND: [ProductWhereInput!]
+  OR: [ProductWhereInput!]
+  NOT: [ProductWhereInput!]
+}
+
+input FloatFilter {
+  equals: Float
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: Float
+}
+
+input CategoryRelationFilter {
+  is: CategoryWhereInput
+  isNot: CategoryWhereInput
+}
+
+input RestaurantOrderByWithRelationInput {
+  id: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  name: SortOrder
+  description: SortOrder
+  categories: CategoryOrderByRelationAggregateInput
+  menu: MenuOrderByWithRelationInput
+  products: ProductOrderByRelationAggregateInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input CategoryOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input MenuOrderByWithRelationInput {
+  id: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  name: SortOrder
+  restaurantId: SortOrder
+  categories: CategoryOrderByRelationAggregateInput
+  restaurant: RestaurantOrderByWithRelationInput
+  products: ProductOrderByRelationAggregateInput
+}
+
+input ProductOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input RestaurantWhereUniqueInput {
+  id: Float!
+}
+
+enum MenuScalarFieldEnum {
+  id
+  createdAt
+  updatedAt
+  name
+  restaurantId
+}
+
+input MenuWhereUniqueInput {
+  id: Float!
+}
+
+enum CategoryScalarFieldEnum {
+  id
+  createdAt
+  updatedAt
+  name
+  restaurantId
+  menuId
+}
+
+input CategoryOrderByWithRelationInput {
+  id: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  name: SortOrder
+  restaurantId: SortOrder
+  menuId: SortOrder
+  menu: MenuOrderByWithRelationInput
+  restaurant: RestaurantOrderByWithRelationInput
+  products: ProductOrderByRelationAggregateInput
+}
+
+input CategoryWhereUniqueInput {
+  id: Float!
+}
+
+enum ProductScalarFieldEnum {
+  id
+  createdAt
+  updatedAt
+  name
+  type
+  price
+  restaurantId
+  menuId
+  categoryId
+}
+
+input ProductOrderByWithRelationInput {
+  id: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  name: SortOrder
+  type: SortOrder
+  price: SortOrder
+  restaurantId: SortOrder
+  menuId: SortOrder
+  categoryId: SortOrder
+  category: CategoryOrderByWithRelationInput
+  menu: MenuOrderByWithRelationInput
+  restaurant: RestaurantOrderByWithRelationInput
+}
+
+input ProductWhereUniqueInput {
+  id: Float!
+}
+
+type Mutation {
+  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
+  updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
+  removeRestaurant(where: RestaurantWhereUniqueInput!): Restaurant!
+  createMenu(createMenuInput: CreateMenuInput!): Menu!
+  updateMenu(updateMenuInput: UpdateMenuInput!): Menu!
+  removeMenu(where: MenuWhereUniqueInput!): Menu!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  removeCategory(where: CategoryWhereUniqueInput!): Category!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(where: ProductWhereUniqueInput!): Product!
+}
+
+input CreateRestaurantInput {
+  name: String!
+  description: String!
+}
+
+input UpdateRestaurantInput {
+  name: String
+  description: String
+  id: Float!
+}
+
+input CreateMenuInput {
+  name: String!
+  restaurantId: Float!
+}
+
+input UpdateMenuInput {
+  name: String
+  restaurantId: Float
+  id: Float!
+}
+
+input CreateCategoryInput {
+  name: String!
+  restaurantId: Float!
+  menuId: Float!
+}
+
+input UpdateCategoryInput {
+  name: String
+  restaurantId: Float
+  menuId: Float
+  id: Float!
+}
+
+input CreateProductInput {
+  name: String!
+  type: String!
+  price: Float!
+  restaurantId: Float!
+  menuId: Float!
+  categoryId: Float!
+}
+
+input UpdateProductInput {
+  name: String
+  type: String
+  price: Float
+  restaurantId: Float
+  menuId: Float
+  categoryId: Float
+  id: Float!
+}
