@@ -14,7 +14,7 @@ import {
 } from './dtos/find.args';
 import { CreateRestaurantInput } from './dtos/create-restaurant.input';
 import { UpdateRestaurantInput } from './dtos/update-restaurant.input';
-import { PrismaService } from 'src/common/prisma/prisma.service';
+import { EnhancedPrismaService as PrismaService } from 'src/common/prisma/enhancedPrisma.service';
 import { Menu } from '../menus/entity/menu.entity';
 import { Category } from '../categories/entity/category.entity';
 

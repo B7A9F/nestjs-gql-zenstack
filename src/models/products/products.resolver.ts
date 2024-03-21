@@ -4,7 +4,7 @@ import { Product } from './entity/product.entity';
 import { FindManyProductArgs, FindUniqueProductArgs } from './dtos/find.args';
 import { CreateProductInput } from './dtos/create-product.input';
 import { UpdateProductInput } from './dtos/update-product.input';
-import { PrismaService } from 'src/common/prisma/prisma.service';
+import { EnhancedPrismaService as PrismaService } from 'src/common/prisma/enhancedPrisma.service';
 
 @Resolver(() => Product)
 export class ProductsResolver {

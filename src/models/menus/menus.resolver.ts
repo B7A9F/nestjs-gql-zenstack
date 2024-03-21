@@ -12,7 +12,7 @@ import { FindManyMenuArgs, FindUniqueMenuArgs } from './dtos/find.args';
 import { CreateMenuInput } from './dtos/create-menu.input';
 import { UpdateMenuInput } from './dtos/update-menu.input';
 
-import { PrismaService } from 'src/common/prisma/prisma.service';
+import { EnhancedPrismaService as PrismaService } from 'src/common/prisma/enhancedPrisma.service';
 import { Category } from '../categories/entity/category.entity';
 
 @Resolver(() => Menu)

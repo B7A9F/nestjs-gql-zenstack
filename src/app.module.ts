@@ -10,9 +10,19 @@ import { RestaurantsModule } from './models/restaurants/restaurants.module';
 import { CategoriesModule } from './models/categories/categories.module';
 import { ProductsModule } from './models/products/products.module';
 import { PrismaModule } from './common/prisma/prisma.module';
+import { ClsModule } from 'nestjs-cls';
 
 @Module({
   imports: [
+    ClsModule.forRoot({
+      middleware: {
+        mount: true,
+        setup: (cls, req) => {
+          const userId = req.headers['x-user-id'];
+          cls.set('user', userId ? { id: Number(userId) } : undefined);
+        },
+      },
+    }),
     ConfigModule.forRoot(),
 
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -28,7 +38,7 @@ import { PrismaModule } from './common/prisma/prisma.module';
     CategoriesModule,
     ProductsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

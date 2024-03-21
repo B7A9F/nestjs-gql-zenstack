@@ -1,8 +1,11 @@
-import { Injectable } from '@nestjs/common'
-import { FindManyRestaurantArgs, FindUniqueRestaurantArgs } from './dtos/find.args'
-import { PrismaService } from 'src/common/prisma/prisma.service'
-import { CreateRestaurantInput } from './dtos/create-restaurant.input'
-import { UpdateRestaurantInput } from './dtos/update-restaurant.input'
+import { Injectable } from '@nestjs/common';
+import {
+  FindManyRestaurantArgs,
+  FindUniqueRestaurantArgs,
+} from './dtos/find.args';
+import { EnhancedPrismaService as PrismaService } from 'src/common/prisma/enhancedPrisma.service';
+import { CreateRestaurantInput } from './dtos/create-restaurant.input';
+import { UpdateRestaurantInput } from './dtos/update-restaurant.input';
 
 @Injectable()
 export class RestaurantsService {
@@ -10,26 +13,26 @@ export class RestaurantsService {
   create(createRestaurantInput: CreateRestaurantInput) {
     return this.prisma.restaurant.create({
       data: createRestaurantInput,
-    })
+    });
   }
 
   findAll(args: FindManyRestaurantArgs) {
-    return this.prisma.restaurant.findMany(args)
+    return this.prisma.restaurant.findMany(args);
   }
 
   findOne(args: FindUniqueRestaurantArgs) {
-    return this.prisma.restaurant.findUnique(args)
+    return this.prisma.restaurant.findUnique(args);
   }
 
   update(updateRestaurantInput: UpdateRestaurantInput) {
-    const { id, ...data } = updateRestaurantInput
+    const { id, ...data } = updateRestaurantInput;
     return this.prisma.restaurant.update({
       where: { id },
       data: data,
-    })
+    });
   }
 
   remove(args: FindUniqueRestaurantArgs) {
-    return this.prisma.restaurant.delete(args)
+    return this.prisma.restaurant.delete(args);
   }
 }

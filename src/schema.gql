@@ -23,6 +23,7 @@ type Category {
   name: String!
   restaurantId: Float!
   menuId: Float!
+  products: [Product!]!
 }
 
 type Restaurant {
